@@ -13,8 +13,9 @@ Revision history:
 <cfscript>
 
 </cfscript>
-<cfparam name="request.pagename" default="Base page template">
-<cfparam name="application.sitename" default="AFP Cms">
+<cfsetting showdebugoutput="no" />
+<cfparam name="request.pagename" default="Dashboard">
+<cfparam name="application.sitename" default="AdCalPos Demo">
 </cfsilent>
 
 <!doctype html>
@@ -26,7 +27,7 @@ Revision history:
 <cfoutput><title>#application.sitename#<cfif len(request.pagename)>  -#request.pagename#</cfif></title></cfoutput>
 
 <link href="/assets/css/baseStyle.css" rel="stylesheet">
-<link href="/assets/css/AFPCMSStyles.css" rel="stylesheet">
+<link href="/assets/css/AdcalPos.css" rel="stylesheet">
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -38,6 +39,6 @@ Revision history:
 <h1>Hello, world!</h1>
 
 
-<script src="/assets/js/AFPCMS.js"></script>
+<script src="/assets/js/AdCalPos.js"></script>
 </body>
 </html>

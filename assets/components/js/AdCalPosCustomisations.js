@@ -8,6 +8,7 @@
 
 $(function() {
 	
-	// jQuery functions go in here
+	// jQuery functions go in here too;
+	
 	
 });  //jQuery is loaded
