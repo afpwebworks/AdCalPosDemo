@@ -2,8 +2,8 @@
 <!----
 ==========================================================================================================
 Filename:     index.cfm
-Description:  Main dashboard for public facing demo site - AFP CMS 6
-Date:         5/12/2014
+Description:  Main dashboard for public facing demo site - AdcalPos Demo V2
+Date:         5/1/2015
 Author:       Michael Kear, AFP Webworks
 
 Revision history: 
@@ -26,7 +26,6 @@ Revision history:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <cfoutput><title>#application.sitename#<cfif len(request.pagename)>  -#request.pagename#</cfif></title></cfoutput>
 
-<link href="/assets/css/baseStyle.css" rel="stylesheet">
 <link href="/assets/css/AdcalPos.css" rel="stylesheet">
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
