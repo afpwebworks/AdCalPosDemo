@@ -1,0 +1,220 @@
+<beans>
+	<!--
+Coldspring Configuration file for Public site.
+Author:    Mike Kear,  AFP Webworks
+Client:    AdCalPos Demo Enterprise site
+           January 2015
+-->
+
+<!--
+=====================================================================
+ configuration/utilities CFCs  
+=====================================================================
+-->
+
+	<bean id="TimeZoneCFC" class="core.cfcs.utilities.TimeZone" lazy-init="true" />
+	<bean id="Pagination" class="core.cfcs.utilities.Pagination" lazy-init="true"/>
+	<bean id="ErrorHandler" class="core.cfcs.Utilities.ErrorHandler" singleton="false" lazy-init="true"/>
+	<bean id="UtilitiesLibrary" class="core.cfcs.utilities.UtilitiesLibrary" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+	</bean>
+	<bean id="FormProtect" class="core.cfcs.utilities.FormProtect" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+	</bean>
+	<bean id="configbean" class="core.config.configbean">
+		<constructor-arg name="argsConfigXMLname"><value>/core/config/config.xml</value></constructor-arg>
+		<constructor-arg name="TimeZoneCFC"><ref bean="TimeZoneCFC"/></constructor-arg>
+	</bean>
+		<bean id="DatabaseMaintenance" class="cms.cfcs.Utilities.DatabaseMaintenance" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>	
+	<bean id="mailer" class="core.cfcs.utilities.mailer">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+	</bean>
+<!--
+=====================================================================
+ Nested Sets Tree  Administration/CMS CFCs  
+=====================================================================
+-->
+	<bean id="AdminMenuDAO" class="core.cfcs.adminMenus.AdminMenuDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>	
+	<bean id="AdminMenu" class="core.cfcs.adminMenus.AdminMenu" lazy-init="true" singleton="false" />
+		<!--
+=====================================================================
+ Administration/CMS CFCs  
+=====================================================================
+-->
+	<bean id="AccessManager" class="core.cfcs.adminmenus.AccessManager" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>	
+	<bean id="AdminMenu" class="core.cfcs.adminmenus.AdminMenu" lazy-init="true"/>
+	
+	<bean id="UserAccess" class="core.cfcs.users.UserAccess" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>	
+	<bean id="User" class="core.cfcs.users.User" lazy-init="true"/>
+	<!--
+=====================================================================
+ Content CFCs  
+=====================================================================
+-->
+	<bean id="CMSPageDisplay" class="core.cfcs.content.CMSPageDisplay">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+	<bean id="Content" class="core.cfcs.content.Content" singleton="false"/>
+	<bean id="ContentDAO" class="core.cfcs.content.ContentDAO">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+		<property name="ContentFilter"><ref bean="ContentFilter"/></property>
+	</bean>
+	<bean id="PageController" class="core.cfcs.content.PageController">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<constructor-arg name="argsTreeManager"><ref bean="TreeManager"/></constructor-arg>
+		<constructor-arg name="argsTreeGateway"><ref bean="TreeGateway"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+		<property name="ContentFilter"><ref bean="ContentFilter"/></property>
+	</bean>
+	
+	
+	
+	
+	<bean id="ContentFilter" class="core.cfcs.content.ContentFilter">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+    <bean id="Template" class="core.cfcs.content.Template" singleton="false"/>
+	<bean id="TemplateDAO" class="core.cfcs.content.TemplateDAO">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+
+	
+<!-- 
+=====================================================================
+Tree controls and CMS 
+=====================================================================
+-->
+	<bean id="TreeGateway" class="core.cfcs.content.Treegateway">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+		<property name="ContentFilter"><ref bean="ContentFilter"/></property>
+	</bean>
+	<bean id="TreeDAO" class="core.cfcs.content.TreeDAO">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<constructor-arg name="argsTreeManager"><ref bean="TreeManager"/></constructor-arg>
+		<constructor-arg name="argsContentDAO"><ref bean="ContentDAO"/></constructor-arg>
+		<property name="UserService">
+			<ref bean="UserService"/>
+		</property>
+	</bean>
+	<bean id="TreeManager" class="core.cfcs.content.TreeManager">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+	<bean id="TreeNode" class="core.cfcs.content.TreeNode" singleton="false"/>
+	<bean id="Pod" class="core.cfcs.content.Pod" singleton="false"/>
+	<bean id="PodDAO" class="core.cfcs.content.PodDAO">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+	<!-- Miscellaneous Content CFCs -->
+
+	<!--
+=====================================================================
+ Content CFCs  
+=====================================================================
+-->   <bean id="User" class="core.cfcs.Users.User" singleton="False"/>
+		<bean id="UsersDAO" class="core.cfcs.Users.UsersDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+	<bean id="UserAccess" class="core.cfcs.Users.UserAccess" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+	</bean>		
+	<bean id="UserService" class="core.cfcs.Users.UserService" lazy-init="true"/>
+	<bean id="PermissionBean" class="core.cfcs.Users.PermissionBean" singleton="False" lazy-init="true"/>
+	<bean id="PermissionsDAO" class="core.cfcs.Users.PermissionsDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>	
+		<bean id="PermissionCategoriesDAO" class="cms.cfcs.Users.PermissionCategoriesDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService" /></property>
+    </bean>
+	<bean id="UserAccessLevel" class="core.cfcs.Users.UserAccessLevel" singleton="False" lazy-init="true"/>
+	<bean id="UserAccessLevelsDAO" class="core.cfcs.users.UserAccessLevelsDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService" /></property>
+     </bean>
+     <bean id="UserGroup" class="core.cfcs.Users.UserGroup" singleton="False" lazy-init="true"/>
+	<bean id="UserGroupsDAO" class="cms.cfcs.Users.UserGroupsDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>	
+	<bean id="SiteContact" class="core.cfcs.Users.SiteContact" singleton="false"  lazy-init="true"/>
+	<bean id="SiteContactsDAO" class="core.cfcs.Users.SiteContactsDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService" /></property>
+    </bean>
+	<!--
+=====================================================================
+Client-Specific CFCs  
+=====================================================================
+-->	
+	<bean id="programguidedisplay" class="core.cfcs.station.programguidedisplay" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+     </bean>
+	 <bean id="GuestbookEntry" class="core.cfcs.station.GuestbookEntry" singleton="False" lazy-init="true"/>
+	 <bean id="GuestbookDAO" class="core.cfcs.station.GuestbookDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+    <bean id="Fixture" class="core.cfcs.station.Fixture" singleton="False" lazy-init="true"/>
+	<bean id="FixturesDAO" class="core.cfcs.station.FixturesDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+	<bean id="Newsfeeds" class="core.cfcs.Newsfeeds.Newsfeeds">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+	</bean>
+	<bean id="Weather" class="core.cfcs.station.Weatherdisplay" singleton="False" lazy-init="true"/>
+	<bean id="Reason" class="core.cfcs.station.Fixture" singleton="False" lazy-init="true"/>
+	<bean id="ReasonsDAO" class="core.cfcs.station.ReasonsDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>	
+		<!--
+=====================================================================
+Shows and Programme CFCs  
+=====================================================================
+-->		
+	
+	<bean id="Show" class="core.cfcs.ProgrammeGuide.Show" singleton="False" lazy-init="true"/>
+	<bean id="ShowsDAO" class="core.cfcs.ProgrammeGuide.ShowsDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+	<bean id="ShowsGateway" class="core.cfcs.ProgrammeGuide.ShowsGateway" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>
+	
+	
+		<!--
+=====================================================================
+Ads and Sponsorship CFCs  
+=====================================================================
+-->	
+	<bean id="Sponsorbean" class="core.cfcs.AdServer.Sponsorbean" singleton="False" lazy-init="true"/>
+	<bean id="SponsorsDAO" class="core.cfcs.AdServer.SponsorsDAO" lazy-init="true">
+		<constructor-arg name="argsConfiguration"><ref bean="configbean"/></constructor-arg>
+		<property name="UserService"><ref bean="UserService"/></property>
+	</bean>	
+	
+</beans>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+======================================================================================
+Configuration file for Content Management System CMS 5.0
+Author:          Michael Kear, AFP Webworks 
+Client:        AdCalPos Demo
+Date:          14/Jan/2015
+======================================================================================
+-->
+<settings>
+<!--
+======================================================================================
+   GLOBAL Variables 
+======================================================================================
+-->
+   <globals>
+	 <hometimezone>Australia/Sydney</hometimezone>
+	 <mgmtReportCutoff>5</mgmtReportCutoff>
+   </globals>
+<!--
+======================================================================================
+   PRODUCTION SITE Variables 
+======================================================================================
+-->
+   <production>
+	 <dsn>adcalposnet</dsn>
+	 <bansdsn>hawkesburyradio</bansdsn>
+	 <ftpdsn>adcalstandalone</ftpdsn>
+	 <sitename>DEVAdCalPOS</sitename>
+	 <currentversion>1</currentversion>
+	 <mailserver>mail.adcalpos.net.au</mailserver>
+	 <mailuser>mkear@adcalpos.net.au</mailuser>
+	 <mailpassword>dk68mq^g</mailpassword>
+	 <sitemailindex>dev_adcalpos_demo</sitemailindex>
+	 <webmasteremail>mkear@afpwebworks.com</webmasteremail>
+   </production>
+<!--
+======================================================================================
+   DEVELOPMENT SITE Variables 
+======================================================================================
+-->
+   <development>
+	 <dsn>adcalposnet</dsn>
+	 <bansdsn>hawkesburyradio</bansdsn>
+	 <ftpdsn>adcalstandalone</ftpdsn>
+	 <sitename>DEVAdCalPOS</sitename>
+	 <currentversion>1</currentversion>
+	 <mailserver>mail.adcalpos.net.au</mailserver>
+	 <mailuser>mkear@adcalpos.net.au</mailuser>
+	 <mailpassword>dk68mq^g</mailpassword>
+	 <sitemailindex>dev_adcalpos_demo</sitemailindex>
+	 <webmasteremail>mkear@afpwebworks.com</webmasteremail>
+   </development>
+</settings>

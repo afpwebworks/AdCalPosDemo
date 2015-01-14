@@ -37,6 +37,10 @@ Revision history:
 <body>
 <h1>Hello, world!</h1>
 
+<cfdump var="#application#" />
+
+<cfdump var="#session#" />
+
 
 <script src="/assets/js/AdCalPos.js"></script>
 </body>
